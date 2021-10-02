@@ -20,16 +20,20 @@ public class UnstableController : MonoBehaviour
     {
         unstableTimer -= Time.deltaTime;
 
-        if(unstableTimer <= 0){
+        if (unstableTimer <= 0)
+        {
             currentSpeed = baseSpeed;
             unstableTimer = 10;
         }
-        else if(unstableTimer < 2){
+        else if (unstableTimer < 2)
+        {
             currentSpeed = unstableSpeed;
         }
+
         player.GetComponent<PlayerMovement>().movementSpeed = currentSpeed;
-        
-        if(unstableTimer < 2){
+
+        if (unstableTimer < 2)
+        {
             timer.color = Color.red;
         }
         else

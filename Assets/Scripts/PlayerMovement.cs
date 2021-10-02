@@ -4,62 +4,61 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
+    Rigidbody2D rigidBody;
 
+    Vector2 movementDir;
+
+    [HideInInspector]
     public float movementSpeed;
-    private float baseMovementSpeed;
+
+
+    public float baseMovementSpeed;
 
     //dashing variables
+    public float dashLength;
+    public float dashCooldown;
     public float dashSpeed;
-    public float dashLength = 0.5f;
-    public float dashCooldown = 1f;
-    private float dashCounter = 0;
-    private float dashCoolCounter = 0;
+    public float dashDuration;
 
+    float lastDash;
+
+    Vector3 dashPosition;
 
     private void Start()
     {
-        baseMovementSpeed = movementSpeed;
-        rb = GetComponent<Rigidbody2D>();
+        movementSpeed = baseMovementSpeed;
 
+        rigidBody = GetComponent<Rigidbody2D>();
     }
-    // Update is called once per frame
+
     void Update()
     {
-        print(dashCoolCounter);
-        print(dashCounter);
-
         //dashing
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Dash"))
         {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            if (Time.time - lastDash > dashCooldown)
             {
-                movementSpeed = dashSpeed;
-                dashCounter = dashLength;
+                lastDash = Time.time;
+
+                dashPosition = rigidBody.position + movementDir * dashLength;
             }
         }
-        if (dashCounter > 0)
-        {
-            dashCounter -= Time.deltaTime;
-
-            if (dashCounter <= 0)
-            {
-                movementSpeed = baseMovementSpeed;
-                dashCoolCounter = dashCooldown;
-            }
-        }
-
-        if (dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
-
     }
 
     void FixedUpdate()
     {
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * movementSpeed * Time.deltaTime;
+        if (Time.time - lastDash < dashDuration)
+        {
+            rigidBody.MovePosition(Vector3.Lerp(rigidBody.position, dashPosition, dashSpeed));
+        }
 
-        rb.MovePosition(rb.position + movement);
+        else
+        {
+            movementDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+            Vector2 movement = movementDir * movementSpeed * Time.deltaTime;
+
+            rigidBody.MovePosition(rigidBody.position + movement);
+        }
     }
 }
