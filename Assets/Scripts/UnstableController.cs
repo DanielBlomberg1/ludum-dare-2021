@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UnstableController : MonoBehaviour
 {
@@ -9,29 +11,32 @@ public class UnstableController : MonoBehaviour
     public float unstableSpeed;
     public float unstableTimer = 10;
 
+    public TextMeshProUGUI timer;
+
     [SerializeField]
     GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         unstableTimer -= Time.deltaTime;
 
-        if(unstableTimer <= -1){
+        if(unstableTimer <= 0){
             currentSpeed = baseSpeed;
             unstableTimer = 10;
         }
-        else if(unstableTimer < 1){
+        else if(unstableTimer < 2){
             currentSpeed = unstableSpeed;
         }
         player.GetComponent<PlayerMovement>().movementSpeed = currentSpeed;
         
+        if(unstableTimer < 2){
+            timer.color = Color.red;
+        }
+        else
+        {
+            timer.color = Color.green;
+        }
 
+        timer.text = Mathf.Round(unstableTimer).ToString();
     }
 }
