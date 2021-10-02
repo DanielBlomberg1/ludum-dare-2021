@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    Rigidbody2D rb;
 
     public float movementSpeed;
     private float baseMovementSpeed;
@@ -17,35 +17,49 @@ public class PlayerMovement : MonoBehaviour
     private float dashCoolCounter = 0;
 
 
-    private void Start() {
+    private void Start()
+    {
         baseMovementSpeed = movementSpeed;
         rb = GetComponent<Rigidbody2D>();
 
     }
     // Update is called once per frame
     void Update()
-    {        
+    {
         print(dashCoolCounter);
         print(dashCounter);
+
         //dashing
-        if(Input.GetKeyDown(KeyCode.Space)){
-            if(dashCoolCounter <= 0 && dashCounter <= 0){
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
                 movementSpeed = dashSpeed;
                 dashCounter = dashLength;
             }
         }
-        if(dashCounter > 0){
+        if (dashCounter > 0)
+        {
             dashCounter -= Time.deltaTime;
-            if(dashCounter <= 0){
+
+            if (dashCounter <= 0)
+            {
                 movementSpeed = baseMovementSpeed;
                 dashCoolCounter = dashCooldown;
             }
         }
-        if(dashCoolCounter > 0){
+
+        if (dashCoolCounter > 0)
+        {
             dashCoolCounter -= Time.deltaTime;
         }
 
-        Vector3 mov = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized * movementSpeed * Time.deltaTime;
-        transform.Translate(mov);
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * movementSpeed * Time.deltaTime;
+
+        rb.MovePosition(rb.position + movement);
     }
 }
