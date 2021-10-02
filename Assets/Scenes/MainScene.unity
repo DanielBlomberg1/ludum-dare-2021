@@ -2012,6 +2012,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  dashSpeed: 1000
+  dashLength: 1
+  dashCooldown: 0.5
 --- !u!114 &619427139
 MonoBehaviour:
   m_ObjectHideFlags: 0
