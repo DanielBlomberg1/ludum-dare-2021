@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashCooldown;
     public float dashSpeed;
     public float dashDuration;
+    [SerializeField] private Transform dashAnimationEffect;
 
     float lastDash;
 
@@ -39,8 +40,11 @@ public class PlayerMovement : MonoBehaviour
             if (Time.time - lastDash > dashCooldown)
             {
                 lastDash = Time.time;
-
                 dashPosition = rigidBody.position + movementDir * dashLength;
+                Transform dashAnimation = Instantiate(dashAnimationEffect, gameObject.transform.position, Quaternion.identity);
+                float angle = Mathf.Atan2(movementDir.y, movementDir.x) * Mathf.Rad2Deg;
+                dashAnimation.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            
             }
         }
     }

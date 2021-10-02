@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 5 && lineOfSight() == true){
+        if (distanceToPlayer < 7 && lineOfSight() == true){
             //do move
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
