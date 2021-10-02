@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Rigidbody2D rb;
+
     public float movementSpeed;
     private float baseMovementSpeed;
 
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start() {
         baseMovementSpeed = movementSpeed;
+        rb = GetComponent<Rigidbody2D>();
+
     }
     // Update is called once per frame
     void Update()
