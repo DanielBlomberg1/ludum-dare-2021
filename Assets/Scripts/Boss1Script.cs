@@ -12,7 +12,10 @@ public class Boss1Script : MonoBehaviour
     [SerializeField] private GameObject swordPf;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        awake = true;
+        if(other.tag == "Player"){
+            awake = true;
+            print("Beast awoken");
+        }
     }
 
     private void SwordStorm(int n, float r){
@@ -26,7 +29,7 @@ public class Boss1Script : MonoBehaviour
 
             GameObject sword = Instantiate(swordPf, spawnPos, Quaternion.identity) as GameObject;
             //sword.transform.rotation = Quaternion.AngleAxis(i*r*Mathf.PI, Vector3.forward);
-            
+
             //magic happens here
             Vector3 direction = sword.transform.position - gameObject.transform.position;
             sword.transform.rotation = Quaternion.LookRotation(direction);
@@ -37,15 +40,31 @@ public class Boss1Script : MonoBehaviour
 
 
     private void Start() {
-        SwordStorm(12, 8);
+
     }
 
 
     private void Update() {
         if(awake){
-            //SwordStorm(12, 4);
+            int seed = Random.Range(0, 10000);
+            int rare = Random.Range(0, 5);
+            if(seed <= 20){
+                SwordStorm(12, 6);
+            }
+            else if(seed <= 100){
+                transform.Translate(new Vector3(0,-5,0));
+            }
+            else if(seed <= 200){
+                transform.Translate(new Vector3(5,0,0));
+            }
+            else if(seed <= 300)
+            {
+                transform.Translate(new Vector3(-5,0,0));                
+            }
+            else if(seed <= 400){
+                transform.Translate(new Vector3(0,5,0));
+            }
+            
         }
     }
-
-
 }

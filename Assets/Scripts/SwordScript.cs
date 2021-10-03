@@ -8,18 +8,18 @@ public class SwordScript : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
-        //rb=GetComponent<Rigidbody2D>();
+        rb=GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         shootTimer -= Time.deltaTime;
-        if(shootTimer < 0){
-            //rb.AddForce(new Vector2(100,0));
+        if(shootTimer < 1){
+            rb.AddForce(transform.up*10);
         }
         if(shootTimer < -1){
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

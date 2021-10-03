@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public float speed;
-    private bool playerDetected = false;
     private float distanceToPlayer;
     GameObject player;
 
