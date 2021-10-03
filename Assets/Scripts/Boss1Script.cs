@@ -11,16 +11,20 @@ public class Boss1Script : MonoBehaviour
 
     [SerializeField] private GameObject swordPf;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Player"){
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
             awake = true;
             print("Beast awoken");
         }
     }
 
-    private void SwordStorm(int n, float r){
-        for (int i = 0; i < n; i++){
-            float rad = 2* Mathf.PI / n * i;
+    private void SwordStorm(int n, float r)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            float rad = 2 * Mathf.PI / n * i;
             float xaxis = Mathf.Cos(rad);
             float yaxis = Mathf.Sin(rad);
 
@@ -39,32 +43,39 @@ public class Boss1Script : MonoBehaviour
     }
 
 
-    private void Start() {
+    private void Start()
+    {
 
     }
 
 
-    private void Update() {
-        if(awake){
+    private void Update()
+    {
+        if (awake)
+        {
             int seed = Random.Range(0, 10000);
             int rare = Random.Range(0, 5);
-            if(seed <= 20){
+            if (seed <= 20)
+            {
                 SwordStorm(12, 6);
             }
-            else if(seed <= 100){
-                transform.Translate(new Vector3(0,-5,0));
-            }
-            else if(seed <= 200){
-                transform.Translate(new Vector3(5,0,0));
-            }
-            else if(seed <= 300)
+            else if (seed <= 100)
             {
-                transform.Translate(new Vector3(-5,0,0));                
+                transform.Translate(new Vector3(0, -5, 0));
             }
-            else if(seed <= 400){
-                transform.Translate(new Vector3(0,5,0));
+            else if (seed <= 200)
+            {
+                transform.Translate(new Vector3(5, 0, 0));
             }
-            
+            else if (seed <= 300)
+            {
+                transform.Translate(new Vector3(-5, 0, 0));
+            }
+            else if (seed <= 400)
+            {
+                transform.Translate(new Vector3(0, 5, 0));
+            }
+
         }
     }
 }

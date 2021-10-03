@@ -13,15 +13,20 @@ public class SpriteAnimator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public bool DestroyOnLoop;
 
-    private void Awake() {
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    private void Update() {
+
+    private void Update()
+    {
         timer += Time.deltaTime;
-        if(timer >= 0.1f){
+        if (timer >= 0.1f)
+        {
             timer -= frameRate;
-            if((currentFrame + 1) == frameArray.Length && DestroyOnLoop){
+            if ((currentFrame + 1) == frameArray.Length && DestroyOnLoop)
+            {
                 Destroy(gameObject);
             }
             currentFrame = (currentFrame + 1) % frameArray.Length;

@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rigidBody;
 
-    Vector2 movementDir;
+    [HideInInspector]
+    public Vector2 movementDir;
 
     [HideInInspector]
     public float movementSpeed;
@@ -41,10 +42,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 lastDash = Time.time;
                 dashPosition = rigidBody.position + movementDir * dashLength;
+
                 Transform dashAnimation = Instantiate(dashAnimationEffect, gameObject.transform.position, Quaternion.identity);
+
                 float angle = Mathf.Atan2(movementDir.y, movementDir.x) * Mathf.Rad2Deg;
                 dashAnimation.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            
+
             }
         }
     }
