@@ -14,12 +14,14 @@ public class BreakableObject : MonoBehaviour
 
     //when player has weapon implement calling;
     public void Break(){
-        currentStage += 1;
-        if(currentStage <= objStates.Length){
+        if(currentStage < objStates.Length){
             sr.sprite = objStates[currentStage];
+            if(currentStage + 1 >= objStates.Length){
+                Destroy(gameObject.GetComponent<BoxCollider2D>());
+            }
         }
+        currentStage += 1;
     }
-
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player"){
             Break();
