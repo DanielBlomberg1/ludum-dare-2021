@@ -53,6 +53,9 @@ public class Health : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene(); 
             SceneManager.LoadScene(scene.name);
         }
+        if(gameObject.GetComponent<TreasureHolder>() != null){
+            gameObject.GetComponent<TreasureHolder>().OnDeath();
+        }
         Destroy(gameObject);
     }
 }

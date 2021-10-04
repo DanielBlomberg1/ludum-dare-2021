@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float dashDuration;
     [SerializeField] private Transform dashAnimationEffect;
 
+    public bool areBootsOn = false;
+
     float lastDash;
 
     Vector3 dashPosition;

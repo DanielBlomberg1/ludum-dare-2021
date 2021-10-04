@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2065763171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 720401288310554189}
   m_RootOrder: 1
@@ -1524,6 +1524,7 @@ MonoBehaviour:
   dashSpeed: 0.1
   dashDuration: 0.1
   dashAnimationEffect: {fileID: 6754748754771828690, guid: bdbc2b755bc9d5f4587d1d7c590efacf, type: 3}
+  areBootsOn: 0
 --- !u!114 &720401288310554190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,7 +1550,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -235852
+  m_InstanceId: -257434
 --- !u!82 &619427142
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1677,6 +1678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 2065763171}
   damage: 20
-  hitCooldown: 1
+  hitCooldown: 0.5
   hitDistance: 4
   hitAngle: 120

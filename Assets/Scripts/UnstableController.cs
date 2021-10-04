@@ -14,12 +14,15 @@ public class UnstableController : MonoBehaviour
 
     public TextMeshProUGUI timer;
 
+    public GameObject unstableEffect;
+
     [SerializeField]
     GameObject player;
 
     private void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
+        unstableEffect.SetActive(false);
     }
 
     void Update()
@@ -29,24 +32,19 @@ public class UnstableController : MonoBehaviour
         if (unstableTimer <= 0)
         {
             currentSpeed = playerMovement.baseMovementSpeed;
-            unstableTimer = 10;
+            unstableTimer = Random.Range(4, 16);
+            unstableEffect.SetActive(false);
+            timer.color = Color.green;
         }
 
         else if (unstableTimer < 2)
         {
             currentSpeed = unstableSpeed;
-        }
-
-        playerMovement.movementSpeed = currentSpeed;
-
-        if (unstableTimer < 2)
-        {
+            unstableEffect.SetActive(true);
             timer.color = Color.red;
+
         }
-        else
-        {
-            timer.color = Color.green;
-        }
+        playerMovement.movementSpeed = currentSpeed;
 
         timer.text = Mathf.Round(unstableTimer).ToString();
     }
