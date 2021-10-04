@@ -13,6 +13,13 @@ public class Boss1Script : MonoBehaviour
     [SerializeField] private GameObject swordPf;
     private Rigidbody2D rb;
 
+
+private void OnCollisionEnter2D(Collision2D other) {
+    if(other.gameObject.tag == "Player"){
+        other.gameObject.GetComponent<Health>().TakeDamage(20);
+    }
+}
+
     public void AwakenTheBeast(){
         awake = true;
         print("Beast awoken");
