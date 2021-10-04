@@ -52,6 +52,8 @@ public class Health : MonoBehaviour
         if(gameObject.tag=="Player"){
             Scene scene = SceneManager.GetActiveScene(); 
             SceneManager.LoadScene(scene.name);
+           // gameObject.transform.position = new Vector3(2, -10, 0);
+            //gameObject.GetComponent<Health>().health = gameObject.GetComponent<Health>().baseHealth;
         }
         if(gameObject.GetComponent<TreasureHolder>() != null){
             gameObject.GetComponent<TreasureHolder>().OnDeath();
