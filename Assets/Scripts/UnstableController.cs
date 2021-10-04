@@ -6,15 +6,21 @@ using TMPro;
 
 public class UnstableController : MonoBehaviour
 {
-    public float baseSpeed;
     public float currentSpeed;
     public float unstableSpeed;
     public float unstableTimer = 10;
+
+    PlayerMovement playerMovement;
 
     public TextMeshProUGUI timer;
 
     [SerializeField]
     GameObject player;
+
+    private void Start()
+    {
+        playerMovement = player.GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -22,15 +28,16 @@ public class UnstableController : MonoBehaviour
 
         if (unstableTimer <= 0)
         {
-            currentSpeed = baseSpeed;
+            currentSpeed = playerMovement.baseMovementSpeed;
             unstableTimer = 10;
         }
+
         else if (unstableTimer < 2)
         {
             currentSpeed = unstableSpeed;
         }
 
-        player.GetComponent<PlayerMovement>().movementSpeed = currentSpeed;
+        playerMovement.movementSpeed = currentSpeed;
 
         if (unstableTimer < 2)
         {

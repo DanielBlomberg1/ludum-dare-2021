@@ -6,6 +6,7 @@ public class TreasureHolder : MonoBehaviour
 {
     [SerializeField] private GameObject[] hiddenObjects;
     [SerializeField] private int currencyAmount;
+    [SerializeField] private int currencyMin;
 
     private void Start() {
         if(hiddenObjects.Length > 0){

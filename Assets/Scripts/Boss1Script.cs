@@ -7,17 +7,15 @@ public class Boss1Script : MonoBehaviour
     private bool awake = false;
     Vector3 pos1 = new Vector3(230, 83, 2.5f);
     Vector3 pos2 = new Vector3(318, 83, 2.5f);
+    Vector2 dir;
     Vector3 moveDes;
 
     [SerializeField] private GameObject swordPf;
+    private Rigidbody2D rb;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            awake = true;
-            print("Beast awoken");
-        }
+    public void AwakenTheBeast(){
+        awake = true;
+        print("Beast awoken");
     }
 
     private void SwordStorm(int n, float r)
@@ -45,7 +43,7 @@ public class Boss1Script : MonoBehaviour
 
     private void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -59,22 +57,26 @@ public class Boss1Script : MonoBehaviour
             {
                 SwordStorm(12, 6);
             }
-            else if (seed <= 100)
+            else if (seed <= 80)
             {
-                transform.Translate(new Vector3(0, -5, 0));
+                dir = Vector2.up;
+            }
+            else if (seed <= 140)
+            {
+                dir = Vector2.down;
             }
             else if (seed <= 200)
             {
-                transform.Translate(new Vector3(5, 0, 0));
+                dir = Vector2.left;
             }
-            else if (seed <= 300)
+            else if (seed <= 260)
             {
-                transform.Translate(new Vector3(-5, 0, 0));
+                dir = Vector2.right;
             }
-            else if (seed <= 400)
-            {
-                transform.Translate(new Vector3(0, 5, 0));
-            }
+
+            Vector2 movement = dir * 15 * Time.deltaTime;
+
+            rb.MovePosition(rb.position + movement);
 
         }
     }

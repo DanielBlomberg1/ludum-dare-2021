@@ -17,7 +17,7 @@ public class BreakableObject : MonoBehaviour
         if(currentStage < objStates.Length){
             sr.sprite = objStates[currentStage];
             if(currentStage + 1 >= objStates.Length){
-                Destroy(gameObject.GetComponent<BoxCollider2D>());
+                Destroy(GetComponent<BoxCollider2D>());
             }
         }
         currentStage += 1;
