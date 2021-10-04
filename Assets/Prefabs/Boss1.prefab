@@ -5448,7 +5448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  baseHealth: 2000
+  baseHealth: 250
   healthBar: {fileID: 499074230}
   hurtSound: []
   aS: {fileID: 1550484241}
