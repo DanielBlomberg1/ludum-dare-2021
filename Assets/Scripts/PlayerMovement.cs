@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float movementSpeed;
 
-
     public float baseMovementSpeed;
 
     //dashing variables
